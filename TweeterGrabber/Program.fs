@@ -3,5 +3,5 @@
 
 [<EntryPoint>]
 let main argv = 
-    Tweeter.Core.Grabber.captureTweets()
+    Grabber.captureTweets()
     0 // return an integer exit code

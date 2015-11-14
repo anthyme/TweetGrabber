@@ -3,6 +3,6 @@
 
 [<EntryPoint>]
 let main argv = 
-    Tweeter.Core.Analyzer.printAuthors()
+    Analyzer.printAuthors()
     System.Console.ReadLine()
     0 // return an integer exit code

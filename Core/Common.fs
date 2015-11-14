@@ -1,4 +1,4 @@
-﻿namespace Tweeter.Core
+﻿module Common
 
 open FSharp.Data
 open FSharp.Data.Sql
@@ -8,15 +8,14 @@ open TweetSharp
 open Settings.Twitter
 open Settings.Database
 
-module Common = 
-    let Twitter = TweetSharp.TwitterService(key,secret)
-    Twitter.AuthenticateWith(token,tokenSecret)
+let Twitter = TweetSharp.TwitterService(key,secret)
+Twitter.AuthenticateWith(token,tokenSecret)
 
-    type TwitterDatabase = 
-        SqlDataProvider<ConnectionString = connectionString,DatabaseVendor = DatabaseProviderTypes.MSSQLSERVER,
-                        IndividualsAmount = 1000,UseOptionTypes = true>
-    let Database = TwitterDatabase.GetDataContext()
+type TwitterDatabase = 
+    SqlDataProvider<ConnectionString = connectionString,DatabaseVendor = DatabaseProviderTypes.MSSQLSERVER,
+                    IndividualsAmount = 1000,UseOptionTypes = true>
+let Database = TwitterDatabase.GetDataContext()
 
-    let deserialize json = try Some <| JsonConvert.DeserializeObject<TwitterStatus> json with ex -> None
-    let serialize obj = JsonConvert.SerializeObject obj
-    let extractFullTweet (dbTweet:TwitterDatabase.dataContext.``[dbo].[Tweets]Entity``) = dbTweet.Json |> deserialize
+let deserialize json = try Some <| JsonConvert.DeserializeObject<TwitterStatus> json with ex -> None
+let serialize obj = JsonConvert.SerializeObject obj
+let extractFullTweet (dbTweet:TwitterDatabase.dataContext.``[dbo].[Tweets]Entity``) = dbTweet.Json |> deserialize

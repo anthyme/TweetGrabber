@@ -57,6 +57,7 @@
     <Compile Include="Settings.fs" />
     <Compile Include="Common.fs" />
     <Compile Include="Grabber.fs" />
+    <Compile Include="Analyzer.fs" />
     <None Include="sample.json" />
   </ItemGroup>
   <ItemGroup>
